@@ -1,0 +1,20 @@
+autodf_raw:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/autodf.csv
+  metadata:
+    kedro-viz:
+      layer: raw
+
+autodf_intermediate:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/autodf.csv
+  metadata:
+    kedro-viz:
+      layer: raw
+
+autodf:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/autodf.csv
+  metadata:
+    kedro-viz:
+      layer: raw

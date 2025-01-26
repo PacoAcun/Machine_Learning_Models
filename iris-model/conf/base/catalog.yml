@@ -1,0 +1,6 @@
+iris:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/iris.csv
+  metadata:
+    kedro-viz:
+      layer: raw
