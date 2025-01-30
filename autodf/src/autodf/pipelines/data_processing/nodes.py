@@ -4,6 +4,7 @@ generated using Kedro 0.19.10
 """
 from pandas import DataFrame
 from sklearn.preprocessing import LabelBinarizer
+from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 
 def process_data(df:DataFrame)->DataFrame:
@@ -21,7 +22,19 @@ def process_data(df:DataFrame)->DataFrame:
     return df_w_encoded
 
 def add_volume(df):
-    df['volume'] = df['length'] * df['width'] * df['height']
+    df['volume'] = df['length']*df['width']*df['height']
+    
     return df
+
+def scale_features(df):
+    y = df['city-mpg']
+    df = df.drop('city-mpg',axis=1)
+
+    scaler = MinMaxScaler()
+    scaler.fit(df)
+    df_scaled_values = scaler.transform(df)
+    df_scaled = pd.DataFrame(data=df_scaled_values,columns=df.columns)
+    df_scaled['city-mpg'] = y
+    return pd.concat([df_scaled,y],axis=0)
 
 

@@ -5,16 +5,92 @@ autodf_raw:
     kedro-viz:
       layer: raw
 
+
 autodf_intermediate:
   type: pandas.CSVDataset
   filepath: data/02_intermediate/autodf.csv
   metadata:
     kedro-viz:
-      layer: raw
+      layer: raw      
+
 
 autodf:
   type: pandas.CSVDataset
   filepath: data/03_primary/autodf.csv
   metadata:
     kedro-viz:
-      layer: raw
+      layer: raw    
+
+autodf_scaled:
+  type: pandas.CSVDataset
+  filepath: data/04_feature/autodf_scaled.csv
+  metadata:
+    kedro-viz:
+      layer: feature
+
+X_train:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/xtrain.csv
+  metadata:
+    kedro-viz:
+      layer: model_input  
+
+X_test:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/xtest.csv
+  metadata:
+    kedro-viz:
+      layer: model_input  
+
+y_test:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/ytest.csv
+  metadata:
+    kedro-viz:
+      layer: model_input  
+
+y_train:
+  type: pandas.CSVDataset
+  filepath: data/05_model_input/ytrain.csv
+  metadata:
+    kedro-viz:
+      layer: model_input
+
+model:
+  type: pickle.PickleDataset
+  filepath: data/06_models/model.pkl
+  backend: pickle
+  metadata:
+    kedro-viz:
+      layer: model
+
+rf_model:
+  type: pickle.PickleDataset
+  filepath: data/06_models/rf_model.pkl
+  backend: pickle
+  metadata:
+    kedro-viz:
+      layer: model
+
+best_params:
+  type: json.JSONDataset
+  filepath: data/06_models/best_params.json
+  metadata:
+    kedro-viz:
+      layer: model
+
+optimized_model:
+  type: pickle.PickleDataset
+  filepath: data/06_models/optimized_model.pkl
+  backend: pickle
+  metadata:
+    kedro-viz:
+      layer: model
+
+optimized_model_rmse:
+  type: pickle.PickleDataset
+  filepath: data/07_metrics/optimized_model_rmse.pkl
+  backend: pickle
+  metadata:
+    kedro-viz:
+      layer: metrics
